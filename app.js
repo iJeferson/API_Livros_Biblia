@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const { Livros_Biblia } = require('./src/models');
+const { livrosBiblia } = require('./src/models');
 
 // Rota para buscar todos os livros da Bíblia
 app.get('/livros', async (req, res) => {
   try {
-    // Busca todos os registros no modelo Livros_Biblia
-    const livros = await Livros_Biblia.findAll();
+    // Busca todos os registros no modelo livrosBiblia
+    const livros = await livrosBiblia.findAll();
     
     // Formata os dados como JSON
     const resultado = livros.map(livro => livro.toJSON());
@@ -25,7 +25,7 @@ app.get('/livros/:nome', async (req, res) => {
 
   try {
     // Busca o livro pelo nome
-    const livro = await Livros_Biblia.findOne({ where: { nome } });
+    const livro = await livrosBiblia.findOne({ where: { nome } });
 
     if (livro) {
       // Retorna o livro como JSON se encontrado
